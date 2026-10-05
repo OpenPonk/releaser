@@ -52,6 +52,7 @@ DEFAULT_RELEASE_TAG: str = "v5.1.0"
 
 ORDERED_REPOSITORIES: List[str] = [
     "synchronized-links",
+    "zoomer",
     "uml-metamodel",
     "xml-dom-visitor",
     "pharo-changes-builder",
