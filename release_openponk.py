@@ -563,6 +563,11 @@ def main() -> None:
         help="Level 3: Push release_base and tags to origin across all repositories",
     )
     argument_parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Force overwrite remote semantic tag if it already exists",
+    )
+    argument_parser.add_argument(
         "--reset",
         action="store_true",
         help="Rollback: Abort unmerged states, return to dev branch, delete local tags",
@@ -660,9 +665,10 @@ def main() -> None:
         import time
 
         print("\nExecuting Level 3: Remote Push to origin...")
+        tag_force_prefix = "+" if parsed_arguments.force else ""
         refspecs = [
             "release_base",
-            f"refs/tags/{target_version_tag}",
+            f"{tag_force_prefix}refs/tags/{target_version_tag}",
             f"+refs/tags/{major_version_tag}",
         ]
 
